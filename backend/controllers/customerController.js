@@ -46,9 +46,9 @@ export const getCart = async (req, res) => {
 export const getPurchaseHistory = async (req, res) => {
     try {
         const userId = req.user.id;
-        const orders = await Order.find({ userId }).populate(
-            "products.productId"
-        );
+        const orders = await Order.find({ userId })
+            .sort({ purchaseDate: -1 })
+            .populate("products.productId");
         res.json({ success: true, orders });
     } catch (err) {
         res.status(500).json({ success: false, message: err.message });
