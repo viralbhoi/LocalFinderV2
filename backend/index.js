@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import mongoose from "mongoose";
 
 connectToDB()
@@ -6,8 +9,8 @@ connectToDB()
     })
     .catch((err) => {
         console.log(err);
-    })
+    });
 
 async function connectToDB() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/test");
+    await mongoose.connect(`${process.env.MONGO_URI}/${process.env.DB_NAME}`);
 }

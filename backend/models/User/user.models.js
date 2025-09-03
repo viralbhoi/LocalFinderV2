@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
         },
         dob: {
             type: Date,
-            required: [true,"Must Enter Birth Date"],
+            required: [true, "Must Enter Birth Date"],
         },
         email: {
             type: String,
@@ -39,7 +39,10 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true,
-            match: [/^[0-9]{10}$/, "Please Enter a valid mobile no without space and country code"],
+            match: [
+                /^[0-9]{10}$/,
+                "Please Enter a valid mobile no without space and country code",
+            ],
         },
         gender: {
             type: String,
