@@ -33,6 +33,21 @@ export const addShop = async (req, res) => {
     }
 };
 
+export const getShops = async (req, res) => {
+    try {
+        const sellerId = req.user.id;
+        const shops = await Shop.find({ sellerId });
+
+        return res.status(200).json({
+            success: true,
+            message: "Shop fetched succesfully",
+            shops,
+        });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
 export const addProduct = async (req, res) => {
     try {
         const sellerId = req.user.id;
